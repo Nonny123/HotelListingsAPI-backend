@@ -36,7 +36,9 @@ namespace HotelListing
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
-            
+
+            services.AddAuthentication();
+            services.ConfigureIdentity(); //implemented in ServiceExtension.cs
 
             //Configure CORS
             services.AddCors(o => {
