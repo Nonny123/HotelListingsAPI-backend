@@ -46,19 +46,21 @@ namespace HotelListing.Controllers
             try
             {
                 var user = _mapper.Map<ApiUser>(userDTO);
-                user.UserName = userDTO.Email;
-                var result = await _userManager.CreateAsync(user, userDTO.Password);
+                //user.UserName = userDTO.Email;
+                //var result = await _userManager.CreateAsync(user, userDTO.Password);
+                var result = await _userManager.CreateAsync(user);
 
                 if (!result.Succeeded)
                 {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(error.Code, error.Description);
-                    }
-                    return BadRequest(ModelState);
+                    //foreach (var error in result.Errors)
+                    //{
+                    //    ModelState.AddModelError(error.Code, error.Description);
+                    //}
+                    //return BadRequest(ModelState);
+                    return BadRequest($"User Registration Attempt Failed");
                 }
-                await _userManager.AddToRolesAsync(user, userDTO.Roles);
-                return Accepted();
+                //await _userManager.AddToRolesAsync(user, userDTO.Roles);
+                //return Accepted();
             }
             catch (Exception ex)
             {
