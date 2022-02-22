@@ -2,6 +2,7 @@ using HotelListing.Configurations;
 using HotelListing.Data;
 using HotelListing.IRepository;
 using HotelListing.Repository;
+using HotelListing.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,8 @@ namespace HotelListing
 
             services.AddAuthentication();
             services.ConfigureIdentity(); //implemented in ServiceExtension.cs
+            services.ConfigureJWT(Configuration);
+
 
             //Configure CORS
             services.AddCors(o => {
@@ -55,6 +58,7 @@ namespace HotelListing
 
             //configure dependencies
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthManager, AuthManager>();
 
 
             //Configure Swagger
