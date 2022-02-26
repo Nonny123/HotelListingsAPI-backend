@@ -80,8 +80,8 @@ namespace HotelListing.Controllers
                 return BadRequest(ModelState);
             }
 
-            //try
-            //{
+            try
+            {
                 if (!await _authManager.ValidateUser(userDTO))
                 {
                     return Unauthorized();
@@ -110,12 +110,12 @@ namespace HotelListing.Controllers
                 //}
                 //return Accepted();
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex, $"Something Went Wrong in the {nameof(Login)}");
-            //    return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
-            //}
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Login)}");
+                return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
+            }
         }
     }
 }

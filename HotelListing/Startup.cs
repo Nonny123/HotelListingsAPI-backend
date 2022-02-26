@@ -40,7 +40,7 @@ namespace HotelListing
 
             services.AddAuthentication();
             services.ConfigureIdentity(); //implemented in ServiceExtension.cs
-            services.ConfigureJWT(Configuration);
+            services.ConfigureJWT(Configuration); //implemented in ServiceExtension.cs
 
 
             //Configure CORS
@@ -68,6 +68,7 @@ namespace HotelListing
             });
 
 
+
             // install nuget - microsoft.aspnetcore.mvc.newtonsoftjson 
             services.AddControllers().AddNewtonsoftJson(op =>
                 op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -88,16 +89,19 @@ namespace HotelListing
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListing v1"));
 
+
             app.UseHttpsRedirection();
 
             app.UseCors("AllowAll");
 
+           
+            
             app.UseRouting();
 
-            
-
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+
+            
 
             app.UseEndpoints(endpoints =>
             {

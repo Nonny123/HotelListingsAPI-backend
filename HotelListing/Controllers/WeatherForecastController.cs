@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace HotelListing.Controllers
         {
             _logger = logger;
         }
-
+        
+        [Authorize]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
