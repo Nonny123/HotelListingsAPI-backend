@@ -11,7 +11,7 @@ namespace HotelListing.Data
         public string Name { get; set; }
         public string ShortName { get; set; }
 
-        public virtual IList<Hotel> Hotels { get; set; }//won't go to the database
+        public virtual IList<Hotel> Hotels { get; set; }
 
 
 
