@@ -1,4 +1,5 @@
-﻿using HotelListing.Data;
+﻿using AspNetCoreRateLimit;
+using HotelListing.Data;
 using HotelListing.Models;
 using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -107,6 +108,26 @@ namespace HotelListing
                 }
                 
               );
+        }
+
+        public static void ConfigureRateLimiting(this IServiceCollection services)
+        {
+            var rateLimitRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*", //all endpoints
+                    Limit= 1, // one call
+                    Period = "5s" // per 5 secs
+                }
+            };
+            services.Configure<IpRateLimitOptions>(opt =>
+            {
+                opt.GeneralRules = rateLimitRules;
+            });
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         }
 
 

@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using HotelListing.Configurations;
 using HotelListing.Data;
 using HotelListing.IRepository;
@@ -5,18 +6,13 @@ using HotelListing.Repository;
 using HotelListing.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace HotelListing
 {
@@ -37,7 +33,16 @@ namespace HotelListing
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
+            //API rate limitimg uses memomry
+            services.AddMemoryCache();
+
+            //for rate limiting
+            services.ConfigureRateLimiting();//implemented in ServiceExtension.cs
+            services.AddHttpContextAccessor();
+
+            //for caching
             services.ConfigureHttpCacheHeaders();//implemented in ServiceExtension.cs
+            
             services.AddAuthentication();
             services.ConfigureIdentity(); //implemented in ServiceExtension.cs
             services.ConfigureJWT(Configuration); //implemented in ServiceExtension.cs
@@ -111,7 +116,8 @@ namespace HotelListing
 
             app.UseResponseCaching();
             app.UseHttpCacheHeaders();
-            
+            app.UseIpRateLimiting(); //AspNetCoreRateLimit
+
             app.UseRouting();
 
             app.UseAuthentication();
