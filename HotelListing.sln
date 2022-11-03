@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelListing", "HotelListin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Web", "Hotel.Web\Hotel.Web.csproj", "{5ED3F3E0-4D8D-4D77-B604-73F9D3788E76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Admin", "Hotel.Admin\Hotel.Admin.csproj", "{292887E3-28BE-4449-9DB8-98F5E57B6100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Admin", "Hotel.Admin\Hotel.Admin.csproj", "{292887E3-28BE-4449-9DB8-98F5E57B6100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Common", "Hotel.Common\Hotel.Common.csproj", "{B6BC772E-C751-4975-BA7C-9CA7EBE6D090}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{292887E3-28BE-4449-9DB8-98F5E57B6100}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{292887E3-28BE-4449-9DB8-98F5E57B6100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{292887E3-28BE-4449-9DB8-98F5E57B6100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6BC772E-C751-4975-BA7C-9CA7EBE6D090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BC772E-C751-4975-BA7C-9CA7EBE6D090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BC772E-C751-4975-BA7C-9CA7EBE6D090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BC772E-C751-4975-BA7C-9CA7EBE6D090}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
